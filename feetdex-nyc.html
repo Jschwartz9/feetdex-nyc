@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FeetDex: NYC</title>
+  <title>ShoeDex: NYC</title>
   
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -75,26 +75,26 @@
     #discovery-cta { font-size:12px; opacity:.5; animation:blink 1.2s infinite; }
     @keyframes blink { 0%,100%{opacity:.4} 50%{opacity:1} }
 
-    /* FeetDex screen */
-    #feetdex-screen { position:fixed; inset:0; background:rgba(4,4,14,.97);
+    /* ShoeDex screen */
+    #shoedex-screen { position:fixed; inset:0; background:rgba(4,4,14,.97);
       display:none; flex-direction:column; padding:22px 24px; z-index:150; overflow-y:auto; }
-    #feetdex-screen.active { display:flex; }
-    #feetdex-screen h2 { font-size:22px; letter-spacing:4px; margin-bottom:2px; }
-    #feetdex-screen .subtitle { font-size:11px; opacity:.4; margin-bottom:18px; }
-    #feetdex-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:10px; }
-    .fdex-slot { border:1px solid rgba(255,255,255,.12); padding:12px 8px;
+    #shoedex-screen.active { display:flex; }
+    #shoedex-screen h2 { font-size:22px; letter-spacing:4px; margin-bottom:2px; }
+    #shoedex-screen .subtitle { font-size:11px; opacity:.4; margin-bottom:18px; }
+    #shoedex-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:10px; }
+    .sdex-slot { border:1px solid rgba(255,255,255,.12); padding:12px 8px;
       display:flex; flex-direction:column; align-items:center; text-align:center;
       min-height:110px; border-radius:3px; }
-    .fdex-slot.unlocked { border-color:rgba(255,255,255,.35); }
-    .fdex-slot.legendary-slot { border-color:rgba(255,215,0,.3); }
-    .fdex-slot.legendary-slot.unlocked { border-color:#ffd700; box-shadow:0 0 8px rgba(255,215,0,.3); }
-    .fdex-slot svg { width:32px; height:32px; margin-bottom:6px; }
-    .fdex-slot .slot-rarity { font-size:9px; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
-    .fdex-slot .slot-name { font-size:10px; line-height:1.4; opacity:.85; }
-    .fdex-slot .slot-lock { font-size:20px; opacity:.18; }
-    .fdex-close { position:absolute; top:14px; right:20px; font-size:13px; cursor:pointer;
+    .sdex-slot.unlocked { border-color:rgba(255,255,255,.35); }
+    .sdex-slot.legendary-slot { border-color:rgba(255,215,0,.3); }
+    .sdex-slot.legendary-slot.unlocked { border-color:#ffd700; box-shadow:0 0 8px rgba(255,215,0,.3); }
+    .sdex-slot svg { width:32px; height:32px; margin-bottom:6px; }
+    .sdex-slot .slot-rarity { font-size:9px; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
+    .sdex-slot .slot-name { font-size:10px; line-height:1.4; opacity:.85; }
+    .sdex-slot .slot-lock { font-size:20px; opacity:.18; }
+    .sdex-close { position:absolute; top:14px; right:20px; font-size:13px; cursor:pointer;
       opacity:.5; pointer-events:all; }
-    .fdex-close:hover { opacity:1; }
+    .sdex-close:hover { opacity:1; }
 
     /* Pause menu */
     #pause-menu { position:fixed; inset:0; background:rgba(0,0,0,.82);
@@ -263,8 +263,8 @@
 
   <!-- HUD -->
   <div id="hud">
-    <div id="hud-title">FeetDex: NYC</div>
-    <div id="hud-collection">Feet collected: 0 / 18</div>
+    <div id="hud-title">ShoeDex: NYC</div>
+    <div id="hud-collection">Shoes collected: 0 / 18</div>
     <div id="hud-interact">[E] Interact</div>
   </div>
   <div id="crosshair"></div>
@@ -304,7 +304,7 @@
 
   <!-- Click-to-play -->
   <div id="lock-overlay">
-    <h1>FeetDex: NYC</h1>
+    <h1>ShoeDex: NYC</h1>
     <p>Click to explore</p>
     <div style="margin-top:18px;font-size:13px;max-width:460px;text-align:center;
       line-height:1.6;color:#ffe080;text-shadow:1px 1px 3px #000;letter-spacing:1px;">
@@ -314,7 +314,7 @@
     </div>
     <div class="controls">
       WASD — Move &nbsp;|&nbsp; Shift — Sprint &nbsp;|&nbsp; Space — Jump<br/>
-      Mouse — Look &nbsp;|&nbsp; E — Interact &nbsp;|&nbsp; F — FeetDex &nbsp;|&nbsp; M — Map &nbsp;|&nbsp; ESC — Pause<br/>
+      Mouse — Look &nbsp;|&nbsp; E — Interact &nbsp;|&nbsp; F — ShoeDex &nbsp;|&nbsp; M — Map &nbsp;|&nbsp; ESC — Pause<br/>
       [LMB] Attack in combat
     </div>
   </div>
@@ -346,16 +346,16 @@
       <div id="discovery-title">DISCOVERED!</div>
       <div id="discovery-name"></div>
       <div id="discovery-sub"></div>
-      <div id="discovery-cta">[E] Add to FeetDex</div>
+      <div id="discovery-cta">[E] Add to ShoeDex</div>
     </div>
   </div>
 
-  <!-- FeetDex screen -->
-  <div id="feetdex-screen">
-    <h2>FeetDex</h2>
-    <div class="subtitle">NYC Street Foot Collection — <span id="fdex-count">0 / 18</span></div>
-    <div id="feetdex-grid"></div>
-    <span class="fdex-close" id="fdex-close-btn">[F] Close</span>
+  <!-- ShoeDex screen -->
+  <div id="shoedex-screen">
+    <h2>ShoeDex</h2>
+    <div class="subtitle">NYC Street Shoe Collection — <span id="sdex-count">0 / 18</span></div>
+    <div id="shoedex-grid"></div>
+    <span class="sdex-close" id="sdex-close-btn">[F] Close</span>
   </div>
 
   <!-- Pause menu -->
@@ -376,14 +376,14 @@
         <span style="opacity:.6;">Space</span><span>Jump</span>
         <span style="opacity:.6;">Mouse</span><span>Look around</span>
         <span style="opacity:.6;">E</span><span>Talk / Enter / Continue</span>
-        <span style="opacity:.6;">F</span><span>Open FeetDex</span>
+        <span style="opacity:.6;">F</span><span>Open ShoeDex</span>
         <span style="opacity:.6;">M</span><span>Open Map</span>
         <span style="opacity:.6;">LMB</span><span>Punch (in combat)</span>
         <span style="opacity:.6;">ESC</span><span>Pause / Cancel</span>
       </div>
     </div>
     <button class="pause-btn" id="pause-resume">Resume</button>
-    <button class="pause-btn" id="pause-feetdex">Open FeetDex</button>
+    <button class="pause-btn" id="pause-shoedex">Open ShoeDex</button>
     <div id="vol-row">
       <label>Volume</label>
       <input type="range" id="vol-slider" min="0" max="1" step="0.05" value="0.5"/>
@@ -403,7 +403,7 @@
 
   <!-- Win screen -->
   <div id="win-screen">
-    <div id="win-title">FeetDex Complete!</div>
+    <div id="win-title">ShoeDex Complete!</div>
     <div id="win-sub">All 18 feet collected.</div>
     <div id="win-list"></div>
     <button id="win-play-again">Play Again</button>
@@ -619,37 +619,59 @@ const Audio = {
 };
 
 
-// ── feetdex.js ─────────────────────────────────────────────
+// ── shoedex.js ─────────────────────────────────────────────
 // Collection tracker — persists via localStorage
 
-const FEET_CATALOG = [
+const SHOE_CATALOG = [
   // Common (5)
-  { id:'common_samurai',    rarity:'common',    name:"The Lost Samurai's Feet" },
-  { id:'common_bill',       rarity:'common',    name:"Bill Beister's Ginger Feet" },
-  { id:'common_gymrat',     rarity:'common',    name:"Gym Rat's Grimy Feet" },
-  { id:'common_50shades',   rarity:'common',    name:"50 Shades of Feet" },
-  { id:'common_happyfeet',  rarity:'common',    name:"Happy Feet" },
+  { id:'common_converse',   rarity:'common',    name:"Chuck Taylor All-Stars" },
+  { id:'common_vans',       rarity:'common',    name:"Vans Old Skool" },
+  { id:'common_adidas',     rarity:'common',    name:"Adidas Stan Smith" },
+  { id:'common_nike_court', rarity:'common',    name:"Nike Court Vision" },
+  { id:'common_reebok',     rarity:'common',    name:"Reebok Club C" },
   // Rare (4)
-  { id:'rare_trex',         rarity:'rare',      name:"T-Rex Feet (?)" },
-  { id:'rare_gramma',       rarity:'rare',      name:"Gramma Tilda's Feet" },
-  { id:'rare_colonel',      rarity:'rare',      name:"Colonel's Toe Lickin' Good Feet" },
-  { id:'rare_cheerleader',  rarity:'rare',      name:"Cheerleader Captain's Feet" },
+  { id:'rare_airmax',       rarity:'rare',      name:"Nike Air Max 90" },
+  { id:'rare_jordans',      rarity:'rare',      name:"Air Jordan 1 Retro High" },
+  { id:'rare_yeezys',       rarity:'rare',      name:"Adidas Yeezy Boost 350" },
+  { id:'rare_balenciaga',   rarity:'rare',      name:"Balenciaga Triple S" },
   // Epic (3)
-  { id:'epic_lebron',       rarity:'epic',      name:"LeBron James' Feet" },
-  { id:'epic_sonion',       rarity:'epic',      name:"Sonion's Crine-Forged Feet" },
-  { id:'epic_sydney',       rarity:'epic',      name:"Sydney Sweeney's (Stunt Double's) Feet" },
+  { id:'epic_louboutin',    rarity:'epic',      name:"Christian Louboutin So Kate" },
+  { id:'epic_offwhite',     rarity:'epic',      name:"Off-White x Nike Chicago" },
+  { id:'epic_travis',       rarity:'epic',      name:"Travis Scott x Jordan 1 High" },
   // Mythic (3)
-  { id:'mythic_clav',       rarity:'mythic',    name:"Clav's Framemog Feet" },
-  { id:'mythic_patapim',    rarity:'mythic',    name:"Feet of Brr Brr Patapim" },
-  { id:'mythic_messi',      rarity:'mythic',    name:"Messi's Golden Foot" },
+  { id:'mythic_dior',       rarity:'mythic',    name:"Dior x Air Jordan 1 High" },
+  { id:'mythic_fragment',   rarity:'mythic',    name:"Fragment x Air Jordan 1" },
+  { id:'mythic_chicago',    rarity:'mythic',    name:"Air Jordan 1 'Chicago' (1985)" },
   // Legendary (2)
-  { id:'legendary_margot',  rarity:'legendary', name:"Feet of Margot Robbie" },
-  { id:'legendary_bigfoot', rarity:'legendary', name:"Big Foot's Big Foot" },
+  { id:'legendary_moonwalk', rarity:'legendary', name:"Michael Jackson's Moonwalk Loafers" },
+  { id:'legendary_ruby',    rarity:'legendary', name:"Ruby Slippers from Wizard of Oz" },
   // Secret (1)
-  { id:'secret_rexey',      rarity:'secret',    name:"The Ancient One's Cure-It-All Feet of Ancient Wonders" },
+  { id:'secret_nike_mag',   rarity:'secret',    name:"Nike Air Mag (Back to Future)" },
 ];
 
-class FeetDex {
+// Educational questions about shoe marketing and business
+const SHOE_QUESTIONS = {
+  "common_converse": {
+    question: "What year did Converse first start making basketball shoes?",
+    options: ["1917", "1932", "1945", "1960"],
+    correct: 0,
+    explanation: "Converse started making basketball shoes in 1917, making them one of the oldest athletic shoe companies!"
+  },
+  "common_vans": {
+    question: "What marketing strategy helped Vans become popular with skaters?",
+    options: ["Celebrity endorsements", "TV commercials", "Sponsoring local skate shops", "Magazine ads"],
+    correct: 2,
+    explanation: "Vans built their brand by supporting grassroots skateboard culture and local skate shops, creating authentic community connections."
+  },
+  "rare_jordans": {
+    question: "What business model did Air Jordans pioneer in sports marketing?",
+    options: ["Celebrity licensing", "Athlete equity partnerships", "Limited edition releases", "Social media campaigns"],
+    correct: 1,
+    explanation: "Air Jordans pioneered giving athletes equity in their signature products, creating long-term business partnerships rather than just endorsement deals."
+  }
+};
+
+class ShoeDex {
   constructor() {
     localStorage.clear();
     this._collected = new Set();
@@ -658,7 +680,7 @@ class FeetDex {
       'Bigfoot (Gary)': 0,
     };
 
-    this.total = FEET_CATALOG.length; // 18
+    this.total = SHOE_CATALOG.length; // 18
   }
 
   // ── Collection ─────────────────────────────────────────────────────────────
@@ -675,7 +697,7 @@ class FeetDex {
 
   get isComplete() { return this._collected.size >= this.total; }
 
-  getEntry(id) { return FEET_CATALOG.find(e => e.id === id) || null; }
+  getEntry(id) { return SHOE_CATALOG.find(e => e.id === id) || null; }
 
   // ── Legendary encounters ────────────────────────────────────────────────────
 
@@ -695,7 +717,7 @@ class FeetDex {
 
   // Returns all catalog entries annotated with collected status
   getAll() {
-    return FEET_CATALOG.map(e => ({ ...e, collected: this._collected.has(e.id) }));
+    return SHOE_CATALOG.map(e => ({ ...e, collected: this._collected.has(e.id) }));
   }
 }
 
@@ -1934,9 +1956,9 @@ class NPCManager {
       }
       const summary = Object.entries(counts)
         .map(([k, v]) => `${k}:${v}`).join(' ');
-      console.log(`[FeetDex] NPC zone counts — ${summary}`);
+      console.log(`[ShoeDex] NPC zone counts — ${summary}`);
       for (const [label, count] of Object.entries(counts)) {
-        if (count < 2) console.warn(`[FeetDex] zone "${label}" has only ${count} NPC(s)`);
+        if (count < 2) console.warn(`[ShoeDex] zone "${label}" has only ${count} NPC(s)`);
       }
     }, 50);
   }
@@ -2699,7 +2721,7 @@ function _injectCSS() {
     ._star-ring   { position:absolute;width:180px;height:180px;top:50%;left:50%;transform:translate(-50%,-50%);animation:disc-star-orbit 4s linear infinite;pointer-events:none; }
     ._star        { position:absolute;width:8px;height:8px;background:#ffd700;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
 
-    /* FeetDex secret slot shimmer (locked) */
+    /* ShoeDex secret slot shimmer (locked) */
     @keyframes slot-shimmer { 0%,100%{background-position:-200% center} 50%{background-position:200% center} }
     .fdex-slot.secret-shimmer {
       background:linear-gradient(90deg,transparent 0%,rgba(255,215,0,.12) 50%,transparent 100%);
@@ -2725,7 +2747,7 @@ function _injectCSS() {
 }
 
 // ── Dialogue scripts ──────────────────────────────────────────────────────────
-// Prompt 08 (FeetDex Master Registry) will provide canonical versions.
+// Prompt 08 (ShoeDex Master Registry) will provide canonical versions.
 
 const NONE_LINES = [
   "Yo, you got a MetroCard? Mine just ran out.",
@@ -2958,14 +2980,14 @@ class UI {
       discTitle:     document.getElementById('discovery-title'),
       discName:      document.getElementById('discovery-name'),
       discSub:       document.getElementById('discovery-sub'),
-      feetdexScreen: document.getElementById('feetdex-screen'),
-      feetdexGrid:   document.getElementById('feetdex-grid'),
-      fdexCount:     document.getElementById('fdex-count'),
-      fdexClose:     document.getElementById('fdex-close-btn'),
+      shoedexScreen: document.getElementById('shoedex-screen'),
+      shoedexGrid:   document.getElementById('shoedex-grid'),
+      sdexCount:     document.getElementById('fdex-count'),
+      sdexClose:     document.getElementById('fdex-close-btn'),
       pauseMenu:     document.getElementById('pause-menu'),
       pauseCount:    document.getElementById('pause-count'),
       pauseResume:   document.getElementById('pause-resume'),
-      pauseFeetdex:  document.getElementById('pause-feetdex'),
+      pauseFeetdex:  document.getElementById('pause-shoedex'),
       pauseReset:    document.getElementById('pause-reset'),
       volSlider:     document.getElementById('vol-slider'),
       winScreen:     document.getElementById('win-screen'),
@@ -2988,7 +3010,7 @@ class UI {
 
     // Callbacks wired by main.js after construction
     this.onResume        = null; // () => void
-    this.onOpenFeetDex   = null; // () => void
+    this.onOpenShoeDex   = null; // () => void
     this.onResetProgress = null; // () => void
     this.onVolume        = null; // (val:number) => void
     this.onPlayAgain     = null; // () => void
@@ -3107,11 +3129,11 @@ class UI {
 
   /**
    * Show the rarity-appropriate full-screen discovery overlay.
-   * feetEntry: object from FEET_CATALOG  |  npc: the NPC whose feet were found
+   * shoeEntry: object from SHOE_CATALOG  |  npc: the NPC whose shoes were found
    */
-  showDiscovery(feetEntry, npc) {
-    this._pendingEntry = feetEntry;
-    const rarity  = feetEntry.rarity;
+  showDiscovery(shoeEntry, npc) {
+    this._pendingEntry = shoeEntry;
+    const rarity  = shoeEntry.rarity;
     const overlay = this._el.discoveryOvl;
 
     // Clear previous rarity class
@@ -3126,7 +3148,7 @@ class UI {
     this._el.discTitle.textContent  = rarity === 'legendary' ? 'LEGENDARY FEET DISCOVERED!'
                                     : rarity === 'secret'    ? ''
                                     : 'DISCOVERED!';
-    this._el.discName.textContent   = feetEntry.name;
+    this._el.discName.textContent   = shoeEntry.name;
     this._el.discSub.textContent    = (rarity === 'legendary' || rarity === 'secret')
       ? 'Only seen by those who look twice... three times.'
       : `Spotted on: ${npc.name}`;
@@ -3141,7 +3163,7 @@ class UI {
 
   /**
    * Called on E press while discovery overlay is open.
-   * Returns the feet entry so main.js can call feetdex.collect(id).
+   * Returns the feet entry so main.js can call shoedex.collect(id).
    */
   confirmDiscovery() {
     const entry = this._pendingEntry;
@@ -3155,21 +3177,21 @@ class UI {
 
   get isDiscoveryOpen() { return this._el.discoveryOvl.classList.contains('active'); }
 
-  // ── FeetDex screen ────────────────────────────────────────────────────────
+  // ── ShoeDex screen ────────────────────────────────────────────────────────
 
-  openFeetDex(feetdex) {
-    this._buildGrid(feetdex);
-    this._el.feetdexScreen.classList.add('active');
+  openShoeDex(shoedex) {
+    this._buildGrid(shoedex);
+    this._el.shoedexScreen.classList.add('active');
   }
 
-  closeFeetDex() { this._el.feetdexScreen.classList.remove('active'); }
+  closeShoeDex() { this._el.shoedexScreen.classList.remove('active'); }
 
-  get isFeetDexOpen() { return this._el.feetdexScreen.classList.contains('active'); }
+  get isShoeDexOpen() { return this._el.shoedexScreen.classList.contains('active'); }
 
   // ── Pause menu ────────────────────────────────────────────────────────────
 
-  openPause(feetdex) {
-    this._el.pauseCount.textContent = `Feet collected: ${feetdex.count} / ${feetdex.total}`;
+  openPause(shoedex) {
+    this._el.pauseCount.textContent = `Feet collected: ${shoedex.count} / ${shoedex.total}`;
     this._el.pauseMenu.classList.add('active');
   }
 
@@ -3179,10 +3201,10 @@ class UI {
 
   // ── Win screen ────────────────────────────────────────────────────────────
 
-  showWinScreen(feetdex) {
+  showWinScreen(shoedex) {
     const list = this._el.winList;
     list.innerHTML = '';
-    for (const e of feetdex.getAll()) {
+    for (const e of shoedex.getAll()) {
       if (!e.collected) continue;
       const d = document.createElement('div');
       d.className = 'win-entry';
@@ -3313,14 +3335,14 @@ class UI {
     }
   }
 
-  // ── Private: FeetDex grid builder ─────────────────────────────────────────
+  // ── Private: ShoeDex grid builder ─────────────────────────────────────────
 
-  _buildGrid(feetdex) {
-    const grid = this._el.feetdexGrid;
+  _buildGrid(shoedex) {
+    const grid = this._el.shoedexGrid;
     grid.innerHTML = '';
-    this._el.fdexCount.textContent = `${feetdex.count} / ${feetdex.total}`;
+    this._el.sdexCount.textContent = `${shoedex.count} / ${shoedex.total}`;
 
-    for (const entry of feetdex.getAll()) {
+    for (const entry of shoedex.getAll()) {
       const slot = document.createElement('div');
       slot.className = 'fdex-slot'
         + (entry.rarity === 'legendary' || entry.id === 's1' ? ' legendary-slot' : '')
@@ -3355,13 +3377,13 @@ class UI {
     });
     this._el.pauseFeetdex.addEventListener('click', () => {
       this.closePause();
-      this.onOpenFeetDex?.();
+      this.onOpenShoeDex?.();
     });
     this._el.pauseReset.addEventListener('click', () => {
       if (confirm('Reset all progress? This cannot be undone.')) this.onResetProgress?.();
     });
     this._el.volSlider.addEventListener('input', e => this.onVolume?.(parseFloat(e.target.value)));
-    this._el.fdexClose.addEventListener('click', () => this.closeFeetDex());
+    this._el.sdexClose.addEventListener('click', () => this.closeShoeDex());
     this._el.winPlayAgain.addEventListener('click', () => {
       this._el.winScreen.classList.remove('active');
       this.onPlayAgain?.();
@@ -6694,7 +6716,7 @@ function makeMidtownBanner(scene, x, _y, z, name, { bg = '#1A1A2A', fg = '#FFFFF
 function _auditColliders() {
   const list = window.SOLID_COLLIDERS;
   if (!list || list.length === 0) {
-    console.log('[FeetDex] Collider audit: SOLID_COLLIDERS empty — no audit');
+    console.log('[ShoeDex] Collider audit: SOLID_COLLIDERS empty — no audit');
     return;
   }
   let overlapCount = 0;
@@ -6702,12 +6724,12 @@ function _auditColliders() {
     for (let j = i + 1; j < list.length; j++) {
       if (list[i].box.intersectsBox(list[j].box)) {
         overlapCount++;
-        if (overlapCount <= 20) console.warn(`[FeetDex] OVERLAP solid ${i} ↔ ${j}`);
+        if (overlapCount <= 20) console.warn(`[ShoeDex] OVERLAP solid ${i} ↔ ${j}`);
       }
     }
   }
-  if (overlapCount === 0) console.log(`[FeetDex] Collider audit PASSED — ${list.length} boxes, 0 overlaps`);
-  else console.warn(`[FeetDex] Collider audit: ${overlapCount} overlapping pair(s) across ${list.length} boxes`);
+  if (overlapCount === 0) console.log(`[ShoeDex] Collider audit PASSED — ${list.length} boxes, 0 overlaps`);
+  else console.warn(`[ShoeDex] Collider audit: ${overlapCount} overlapping pair(s) across ${list.length} boxes`);
 
   const npcs = window.ALL_NPCS || [];
   let npcOverlaps = 0;
@@ -6717,8 +6739,8 @@ function _auditColliders() {
       if (d < 1.0) npcOverlaps++;
     }
   }
-  if (npcOverlaps > 0) console.warn(`[FeetDex] NPC overlap audit: ${npcOverlaps} pair(s) within 1.0 units`);
-  else console.log(`[FeetDex] NPC overlap audit PASSED — ${npcs.length} NPCs, 0 close pairs`);
+  if (npcOverlaps > 0) console.warn(`[ShoeDex] NPC overlap audit: ${npcOverlaps} pair(s) within 1.0 units`);
+  else console.log(`[ShoeDex] NPC overlap audit PASSED — ${npcs.length} NPCs, 0 close pairs`);
 }
 
 // ── New expanded areas ────────────────────────────────────────────────────────
@@ -7359,7 +7381,7 @@ class World {
 
 // Build marker so we can confirm the latest code is actually loaded.
 // If you see an old build number in the console, your browser is caching JS.
-console.log('%c[FeetDex] BUILD 2026-05-06g — pole-mounted landmark banners + taxi/prop relocation + road audit',
+console.log('%c[ShoeDex] BUILD 2026-05-06g — pole-mounted landmark banners + taxi/prop relocation + road audit',
   'color:#44ff88;font-weight:bold');
 
 // Cache-bust: ?v=... appended so browsers re-fetch sub-modules when JS changes.
@@ -7398,7 +7420,7 @@ scene.add(sun);
 // ── Core systems ──────────────────────────────────────────────────────────────
 const input   = new InputHandler();
 const world   = new World(scene);
-const feetdex = new FeetDex();
+const shoedex = new ShoeDex();
 const ui      = new UI();
 const npcMgr  = new NPCManager(scene, world.colliders);
 npcMgr.addInteriorNpcs(scene, world.interiorNpcSpawns);
@@ -7408,7 +7430,7 @@ player.setFloorFn((x, z, cy) => world.getFloorY(x, z, cy));
 const interaction = new InteractionSystem(camera, scene, player);
 
 // ── State ─────────────────────────────────────────────────────────────────────
-// 'playing' | 'dialogue' | 'discovery' | 'feetdex' | 'paused' | 'interior' | 'minigame' | 'combat' | 'transitioning'
+// 'playing' | 'dialogue' | 'discovery' | 'shoedex' | 'paused' | 'interior' | 'minigame' | 'combat' | 'transitioning'
 let state             = 'playing';
 let currentInteriorId = null;
 let _nearestNPC       = null;  // updated each frame — proximity only
@@ -7450,15 +7472,15 @@ ui.onResume = () => {
   requestLock();
 };
 
-ui.onOpenFeetDex = () => {
+ui.onOpenShoeDex = () => {
   ui.closePause();
-  ui.openFeetDex(feetdex);
-  state = 'feetdex';
+  ui.openShoeDex(shoedex);
+  state = 'shoedex';
 };
 
 ui.onResetProgress = () => {
-  feetdex.reset();
-  ui.updateCollection(0, feetdex.total);
+  shoedex.reset();
+  ui.updateCollection(0, shoedex.total);
   ui.closePause();
   state = 'playing';
   requestLock();
@@ -7472,14 +7494,14 @@ ui.onWinClose = () => {
 };
 
 ui.onPlayAgain = () => {
-  feetdex.reset();
+  shoedex.reset();
   window.location.reload();
 };
 
-// FeetDex close button — ui.js fires its own DOM event; also update state here
+// ShoeDex close button — ui.js fires its own DOM event; also update state here
 document.getElementById('fdex-close-btn').addEventListener('click', () => {
-  if (state === 'feetdex') {
-    ui.closeFeetDex();
+  if (state === 'shoedex') {
+    ui.closeShoeDex();
     state = 'playing';
     requestLock();
   }
@@ -7508,7 +7530,7 @@ function _handleE() {
           if (_activeNPC.feetCollected) {
             dlgCount = 99;
           } else {
-            dlgCount = feetdex.incrementLegendary(_activeNPC.name) - 1;
+            dlgCount = shoedex.incrementLegendary(_activeNPC.name) - 1;
           }
         }
 
@@ -7535,13 +7557,13 @@ function _handleE() {
     case 'discovery': {
       const entry = ui.confirmDiscovery();
       if (entry) {
-        const isNew = feetdex.collect(entry.id);
+        const isNew = shoedex.collect(entry.id);
         if (isNew) {
           if (_activeNPC) _activeNPC.feetCollected = true;
-          ui.updateCollection(feetdex.count, feetdex.total);
-          if (feetdex.isComplete) {
+          ui.updateCollection(shoedex.count, shoedex.total);
+          if (shoedex.isComplete) {
             state = 'playing';
-            setTimeout(() => ui.showWinScreen(feetdex), 300);
+            setTimeout(() => ui.showWinScreen(shoedex), 300);
             return;
           }
         }
@@ -7567,8 +7589,8 @@ function _handleDialogueResult(result) {
   }
 
   if (result === 'discover') {
-    const entry = _activeNPC ? feetdex.getEntry(_activeNPC.feetId) : null;
-    if (entry && !feetdex.has(entry.id)) {
+    const entry = _activeNPC ? shoedex.getEntry(_activeNPC.feetId) : null;
+    if (entry && !shoedex.has(entry.id)) {
       ui.closeDialogue();
       ui.showDiscovery(entry, _activeNPC);
       if (_activeNPC.rarity === 'legendary') Audio.legendaryFanfare();
@@ -7587,7 +7609,7 @@ function _handleDialogueResult(result) {
 
   if (result === 'challenge') {
     ui.closeDialogue();
-    if (_activeNPC && feetdex.has(_activeNPC.feetId)) {
+    if (_activeNPC && shoedex.has(_activeNPC.feetId)) {
       state = 'playing';
       _activeNPC = null;
       requestLock();
@@ -7609,9 +7631,9 @@ function _handleDialogueResult(result) {
 
     // 3rd encounter AND feet not yet collected → trigger legendary discovery
     if (_activeNPC && !_activeNPC.feetCollected && _activeNPC.feetId) {
-      const count = feetdex.getLegendaryCount(_activeNPC.name);
+      const count = shoedex.getLegendaryCount(_activeNPC.name);
       if (count >= 3) {
-        const entry = feetdex.getEntry(_activeNPC.feetId);
+        const entry = shoedex.getEntry(_activeNPC.feetId);
         if (entry) {
           ui.showDiscovery(entry, _activeNPC);
           Audio.legendaryFanfare();
@@ -7682,11 +7704,11 @@ function _relocateLegendary(npc) {
 function _handleF() {
   if (state === 'playing' || state === 'interior') {
     Audio.uiClick();
-    ui.openFeetDex(feetdex);
-    state = 'feetdex';
-  } else if (state === 'feetdex') {
+    ui.openShoeDex(shoedex);
+    state = 'shoedex';
+  } else if (state === 'shoedex') {
     Audio.uiClick();
-    ui.closeFeetDex();
+    ui.closeShoeDex();
     state = (currentInteriorId ? 'interior' : 'playing');
     requestLock();
   }
@@ -7696,7 +7718,7 @@ function _handleESC() {
   if (_mapOpen) { _closeMap(); return; }
   if (state === 'playing' || state === 'interior') {
     Audio.uiClick();
-    ui.openPause(feetdex);
+    ui.openPause(shoedex);
     state = 'paused';
   } else if (state === 'paused') {
     Audio.uiClick();
@@ -7796,8 +7818,8 @@ function handleMinigameResult(npc, won) {
   _closeMinigame();
   if (won) {
     Audio.gameWin();
-    const entry = feetdex.getEntry(npc.feetId);
-    if (entry && !feetdex.has(entry.id)) {
+    const entry = shoedex.getEntry(npc.feetId);
+    if (entry && !shoedex.has(entry.id)) {
       ui.showDiscovery(entry, npc);
       _activeNPC = npc;
       state = 'discovery';
@@ -8113,7 +8135,7 @@ function gameLoop() {
 }
 
 // ── Bootstrap ─────────────────────────────────────────────────────────────────
-ui.updateCollection(feetdex.count, feetdex.total);
+ui.updateCollection(shoedex.count, shoedex.total);
 gameLoop();
 
 
