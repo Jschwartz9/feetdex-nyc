@@ -67,7 +67,7 @@
       50%{border-color:#fff;box-shadow:0 0 28px rgba(255,255,255,.5)} }
     @keyframes pulse-gold { 0%,100%{border-color:#ffd700;box-shadow:0 0 18px rgba(255,215,0,.3)}
       50%{border-color:#ffec6e;box-shadow:0 0 55px rgba(255,215,0,.75)} }
-    #discovery-shoe { width:72px; height:72px; margin-bottom:14px; }
+    #discovery-foot { width:72px; height:72px; margin-bottom:14px; }
     #discovery-rarity { font-size:11px; letter-spacing:4px; text-transform:uppercase; margin-bottom:4px; }
     #discovery-title { font-size:26px; font-weight:bold; margin-bottom:6px; }
     #discovery-name { font-size:17px; opacity:.85; margin-bottom:4px; }
@@ -282,7 +282,7 @@
   <div id="legendary-hint">
     <h3>LEGENDARY ENCOUNTER</h3>
     <p>Legendaries don't trust easily. You'll have to find this one
-       <b>three times</b> across the city before they show you their shoes.<br/><br/>
+       <b>three times</b> across the city before they show you their feet.<br/><br/>
        They move between encounters — keep your eyes open.</p>
     <div class="lh-cta">[E] Got it</div>
   </div>
@@ -309,7 +309,7 @@
     <div style="margin-top:18px;font-size:13px;max-width:460px;text-align:center;
       line-height:1.6;color:#ffe080;text-shadow:1px 1px 3px #000;letter-spacing:1px;">
       <b>OBJECTIVE</b><br/>
-      Roam the streets of New York City and collect all 18 unique pairs of shoes.
+      Roam the streets of New York City and collect all 18 unique pairs of feet.
       Talk to strangers. Beat mythic challengers. Earn legendary trust.
     </div>
     <div class="controls">
@@ -333,7 +333,7 @@
   <!-- Discovery overlay -->
   <div id="discovery-overlay">
     <div id="discovery-border">
-      <svg id="discovery-shoe" viewBox="0 0 100 120" fill="currentColor">
+      <svg id="discovery-foot" viewBox="0 0 100 120" fill="currentColor">
         <rect x="16" y="30" width="68" height="65" rx="18"/>
         <ellipse cx="50" cy="92" rx="34" ry="20"/>
         <circle cx="22" cy="28" r="11"/>
@@ -364,7 +364,7 @@
     <div id="pause-count"></div>
     <div id="pause-objective" style="font-size:12px;color:#ffe080;letter-spacing:1px;
       text-align:center;max-width:380px;line-height:1.6;margin-bottom:18px;">
-      <b>OBJECTIVE</b> — Collect all 18 unique pairs of shoes across NYC.
+      <b>OBJECTIVE</b> — Collect all 18 unique pairs of feet across NYC.
     </div>
     <div id="pause-controls" style="font-size:12px;color:#cfcfcf;letter-spacing:1px;
       max-width:380px;line-height:1.9;margin-bottom:18px;
@@ -404,7 +404,7 @@
   <!-- Win screen -->
   <div id="win-screen">
     <div id="win-title">ShoeDex Complete!</div>
-    <div id="win-sub">All 18 shoes collected.</div>
+    <div id="win-sub">All 18 feet collected.</div>
     <div id="win-list"></div>
     <button id="win-play-again">Play Again</button>
     <button id="win-close-btn" style="margin-top:8px;background:none;border:1px solid rgba(255,255,255,.2);
@@ -509,7 +509,7 @@ const Audio = {
     masterGain.gain.value = Math.max(0, Math.min(1, v));
   },
 
-  shoestep() {
+  footstep() {
     tone(80, 0.06, 'sine', 0.12);
     tone(60, 0.06, 'triangle', 0.08);
   },
@@ -557,7 +557,7 @@ const Audio = {
     // [baseHz, waveType, gain]  — all gains audible through masterGain×0.5
     const PROFILES = {
       // Common
-      common_happyshoes: [740, 'sine',     0.22], // penguin: bright squeaky chirp
+      common_happyfeet: [740, 'sine',     0.22], // penguin: bright squeaky chirp
       common_gymrat:    [110, 'triangle', 0.26], // gym bro: low grunt
       common_samurai:   [165, 'sine',     0.22], // samurai: dignified mid
       common_bill:      [147, 'triangle', 0.22], // Bill: slightly nasal
@@ -577,12 +577,12 @@ const Audio = {
       mythic_messi:     [220, 'sine',     0.24], // Messi: warm, confident A3
       // Legendary
       legendary_margot: [349, 'sine',     0.24], // Margot: elegant F4
-      legendary_bigshoe:[ 98, 'triangle', 0.30], // Gary: deep gentle giant
+      legendary_bigfoot:[ 98, 'triangle', 0.30], // Gary: deep gentle giant
       // Secret
       secret_rexey:     [110, 'sine',     0.26], // Rexey: ancient resonant A2
     };
 
-    // Rarity fallbacks for NPCs with no shoes (rarity='none') or missing ids
+    // Rarity fallbacks for NPCs with no feet (rarity='none') or missing ids
     const FALLBACK = {
       epic:      [175, 'sine',     0.22],
       rare:      [165, 'triangle', 0.23],
@@ -677,7 +677,7 @@ class ShoeDex {
     this._collected = new Set();
     this.legendaryEncounters = {
       'Margot Robbie':  0,
-      'Bigshoe (Gary)': 0,
+      'Bigfoot (Gary)': 0,
     };
 
     this.total = SHOE_CATALOG.length; // 18
@@ -711,7 +711,7 @@ class ShoeDex {
 
   reset() {
     this._collected.clear();
-    this.legendaryEncounters = { 'Margot Robbie': 0, 'Bigshoe (Gary)': 0 };
+    this.legendaryEncounters = { 'Margot Robbie': 0, 'Bigfoot (Gary)': 0 };
     localStorage.clear();
   }
 
@@ -937,7 +937,7 @@ class Player {
 
     this.position.set(nx, ny, nz);
 
-    // ── Shoestep sound ─────────────────────────────────────────────────────────
+    // ── Footstep sound ─────────────────────────────────────────────────────────
     if (this.onGround && (mx !== 0 || mz !== 0)) {
       this._stepTimer -= dt;
       if (this._stepTimer <= 0) {
@@ -987,7 +987,7 @@ const LEGENDARY_PRESETS = [
       { type: 'sphere', r: 0.19, color: 0xfaf0e6, pos: [0, 1.73, 0] }, // platinum hair
     ],
   },
-  // Preset 1 — Bigshoe (Gary): dark brown fur, denim shorts, muddy bare shoes
+  // Preset 1 — Bigfoot (Gary): dark brown fur, denim shorts, muddy bare feet
   {
     shirt: 0x3d2008, pants: 0x3b5998, shoes: 0x5c3d11, skin: 0x3d2008,
     extras: [
@@ -1005,7 +1005,7 @@ const LEGENDARY_PRESETS = [
   },
 ];
 
-// Per-shoesId color overrides — applied after rarity defaults
+// Per-feetId color overrides — applied after rarity defaults
 const APPEARANCE_CONFIGS = {
   common_samurai:   { shirt: 0x1a1a3e, pants: 0x1a1a40, shoes: 0x7a5533, skin: 0xffcc99 },
   common_bill:      { shirt: 0xb5785a, pants: 0xc4a97d, shoes: 0x999999, skin: 0xffe0cc },
@@ -1024,13 +1024,13 @@ const APPEARANCE_CONFIGS = {
   secret_rexey:     { shirt: 0xf5e6c8, pants: 0xf5e6c8, shoes: 0x8B6914, skin: 0xd4a373 },
 };
 
-// Canonical NPC name per shoesId
-const SHOES_NAMES = {
+// Canonical NPC name per feetId
+const FEET_NAMES = {
   common_samurai:    'Ronin',
   common_bill:       'Bill Beister',
   common_gymrat:     'Dex',
   common_50shades:   'Grey',
-  common_happyshoes:  'Mumble',
+  common_happyfeet:  'Mumble',
   rare_trex:         'Rex (?)',
   rare_gramma:       'Gramma Tilda',
   rare_colonel:      'The Colonel',
@@ -1052,46 +1052,46 @@ const NPC_NAMES = [
 ];
 
 // Random-spawn pool — fixed-position NPCs are excluded
-const SHOES_POOL = {
+const FEET_POOL = {
   common: ['common_samurai', 'common_bill', 'common_50shades'],
   mythic: ['mythic_clav', 'mythic_patapim'],
 };
 
 // Fixed world positions for legendary NPCs
 const LEGENDARY_DEFS = [
-  { name: 'Margot Robbie',  pos: [-44, 0, -38], preset: 0, shoesId: 'legendary_margot',  bodyScale: 1.00 },
-  { name: 'Bigshoe (Gary)', pos: [ 38, 0,  48], preset: 1, shoesId: 'legendary_bigshoe', bodyScale: 1.27 },
+  { name: 'Margot Robbie',  pos: [-44, 0, -38], preset: 0, feetId: 'legendary_margot',  bodyScale: 1.00 },
+  { name: 'Bigfoot (Gary)', pos: [ 38, 0,  48], preset: 1, feetId: 'legendary_bigfoot', bodyScale: 1.27 },
 ];
 
 // Fixed world positions for other specifically-placed NPCs
 const SPECIAL_DEFS = [
   // Mumble hidden in the Times Square crowd
-  { name: 'Mumble',       pos: [  6, 0, -38], rarity: 'common', shoesId: 'common_happyshoes', minigame: null,  isPenguin: true, bodyScale: 0.70 },
+  { name: 'Mumble',       pos: [  6, 0, -38], rarity: 'common', feetId: 'common_happyfeet', minigame: null,  isPenguin: true, bodyScale: 0.70 },
   // Messi near Central Park (north zone)
-  { name: 'Leo Messi',    pos: [ 20, 0,  45], rarity: 'mythic', shoesId: 'mythic_messi',      minigame: 'rps', bodyScale: 0.97 },
+  { name: 'Leo Messi',    pos: [ 20, 0,  45], rarity: 'mythic', feetId: 'mythic_messi',      minigame: 'rps', bodyScale: 0.97 },
   // The Ancient One — dead end of a hidden 2-unit alley in the far NW outskirts
-  { name: 'The Ancient One', pos: [-117, 0, -228], rarity: 'secret', shoesId: 'secret_rexey',     minigame: null,  bodyScale: 1.00 },
+  { name: 'The Ancient One', pos: [-117, 0, -228], rarity: 'secret', feetId: 'secret_rexey',     minigame: null,  bodyScale: 1.00 },
   // One named character per accessible building. Each interior is at world
   // x=INTERIOR_BASE_X + (3 + interiorIdx) * 200 with z near 0:
   //   Cafe=2600, Diner=2800, Gym=3000, Office=3200, Shop=3400, Bar=3600,
   //   Gallery=3800, Laundry=4000, Pharmacy=4200, Hotel=4400, KFC=4600,
   //   Bodega=4800, Museum=5000, Barbershop=5200.
   // Dex — Gym
-  { name: 'Dex',               pos: [3000, 0,   0], rarity: 'common', shoesId: 'common_gymrat',     minigame: null,  bodyScale: 1.00 },
+  { name: 'Dex',               pos: [3000, 0,   0], rarity: 'common', feetId: 'common_gymrat',     minigame: null,  bodyScale: 1.00 },
   // LeBron James — Hotel Lobby (relocated from Gym to fix Dex overlap)
-  { name: 'LeBron James',      pos: [4400, 0,   0], rarity: 'epic',   shoesId: 'epic_lebron',       minigame: null,  bodyScale: 1.05 },
+  { name: 'LeBron James',      pos: [4400, 0,   0], rarity: 'epic',   feetId: 'epic_lebron',       minigame: null,  bodyScale: 1.05 },
   // Gramma Tilda — Pharmacy
-  { name: 'Gramma Tilda',      pos: [4200, 0,   2], rarity: 'rare',   shoesId: 'rare_gramma',       minigame: null,  bodyScale: 1.00 },
+  { name: 'Gramma Tilda',      pos: [4200, 0,   2], rarity: 'rare',   feetId: 'rare_gramma',       minigame: null,  bodyScale: 1.00 },
   // The Colonel — KFC
-  { name: 'The Colonel',       pos: [4600, 0,   3], rarity: 'rare',   shoesId: 'rare_colonel',      minigame: null,  bodyScale: 1.00 },
+  { name: 'The Colonel',       pos: [4600, 0,   3], rarity: 'rare',   feetId: 'rare_colonel',      minigame: null,  bodyScale: 1.00 },
   // Captain Brianna — Bar (relocated from Brooklyn Bridge to fix Rex overlap)
-  { name: 'Captain Brianna',   pos: [3600, 0,   0], rarity: 'rare',   shoesId: 'rare_cheerleader',  minigame: null,  bodyScale: 1.00 },
+  { name: 'Captain Brianna',   pos: [3600, 0,   0], rarity: 'rare',   feetId: 'rare_cheerleader',  minigame: null,  bodyScale: 1.00 },
   // Rex (?) — Brooklyn Bridge deck (sole named character on the bridge)
-  { name: 'Rex (?)',           pos: [-60, 6, -80], rarity: 'rare',   shoesId: 'rare_trex',         minigame: null,  bodyScale: 1.30 },
+  { name: 'Rex (?)',           pos: [-60, 6, -80], rarity: 'rare',   feetId: 'rare_trex',         minigame: null,  bodyScale: 1.30 },
   // ESB lobby — Sonion Crine always here
-  { name: 'Sonion Crine',      pos: [2000, 0,   3], rarity: 'epic',   shoesId: 'epic_sonion',      minigame: null,  bodyScale: 1.00 },
+  { name: 'Sonion Crine',      pos: [2000, 0,   3], rarity: 'epic',   feetId: 'epic_sonion',      minigame: null,  bodyScale: 1.00 },
   // Chrysler lobby — Sydney always here
-  { name: 'Definitely Sydney (Stunt Double)', pos: [2200, 0, -3], rarity: 'epic', shoesId: 'epic_sydney', minigame: null, bodyScale: 1.00 },
+  { name: 'Definitely Sydney (Stunt Double)', pos: [2200, 0, -3], rarity: 'epic', feetId: 'epic_sydney', minigame: null, bodyScale: 1.00 },
 ];
 
 // ── Shared AudioContext ────────────────────────────────────────────────────────
@@ -1138,10 +1138,10 @@ function _getEQIn(c) {
 // Fields: freq, type, masterGain, dur(s), gap(s), up(Hz), dn(Hz),
 //   h2(Hz), hg, harmType, lfo(Hz vibrato), ld(Hz depth),
 //   tremolo(gain depth for tremolo LFO), lilt(Hz added to last 2 syllables),
-//   sweep(bool — Bigshoe arc), altUp(bool — up every other syllable),
+//   sweep(bool — Bigfoot arc), altUp(bool — up every other syllable),
 //   dist, rev, noise, randFreq
 const VOICE_PROFILES = {
-  common_happyshoes: { freq:280,  type:'sine', masterGain:0.16, dur:0.045, gap:0.020, up:240, dn:0,  h2:560, hg:0.05, harmType:'square',   lfo:8,  ld:30,  tremolo:0,    lilt:0,  sweep:false, altUp:false, dist:false, rev:false, noise:false, randFreq:false },
+  common_happyfeet: { freq:280,  type:'sine', masterGain:0.16, dur:0.045, gap:0.020, up:240, dn:0,  h2:560, hg:0.05, harmType:'square',   lfo:8,  ld:30,  tremolo:0,    lilt:0,  sweep:false, altUp:false, dist:false, rev:false, noise:false, randFreq:false },
   common_samurai:   { freq:160,  type:'sine', masterGain:0.15, dur:0.180, gap:0.080, up:0,   dn:20, h2:80,  hg:0.08, harmType:'triangle', lfo:0,  ld:0,   tremolo:0,    lilt:0,  sweep:false, altUp:false, dist:false, rev:false, noise:false, randFreq:false },
   common_bill:      { freq:220,  type:'sine', masterGain:0.14, dur:0.110, gap:0.050, up:25,  dn:0,  h2:440, hg:0.04, harmType:'triangle', lfo:0,  ld:0,   tremolo:0,    lilt:0,  sweep:false, altUp:false, dist:false, rev:false, noise:false, randFreq:false },
   common_gymrat:    { freq:200,  type:'sine', masterGain:0.15, dur:0.060, gap:0.025, up:60,  dn:0,  h2:200, hg:0.06, harmType:'sawtooth', lfo:0,  ld:0,   tremolo:0,    lilt:0,  sweep:false, altUp:false, dist:false, rev:false, noise:false, randFreq:false },
@@ -1157,13 +1157,13 @@ const VOICE_PROFILES = {
   mythic_patapim:   { freq:520,  type:'sine', masterGain:0.08, dur:0.030, gap:0.012, up:0,   dn:0,  h2:260, hg:0.06, harmType:'square',   lfo:14, ld:0,   tremolo:0.08, lilt:0,  sweep:false, altUp:false, dist:false, rev:false, noise:false, randFreq:true  },
   mythic_messi:     { freq:240,  type:'sine', masterGain:0.15, dur:0.100, gap:0.045, up:0,   dn:0,  h2:480, hg:0.04, harmType:'sine',     lfo:0,  ld:0,   tremolo:0,    lilt:25, sweep:false, altUp:false, dist:false, rev:false, noise:false, randFreq:false },
   legendary_margot: { freq:400,  type:'sine', masterGain:0.075, dur:0.085, gap:0.035, up:0,   dn:0,  h2:800, hg:0.03, harmType:'sine',     lfo:5,  ld:0,   tremolo:0.04, lilt:60, sweep:false, altUp:false, dist:false, rev:false, noise:false, randFreq:false },
-  legendary_bigshoe:{ freq:75,   type:'sine', masterGain:0.08, dur:0.250, gap:0.110, up:0,   dn:0,  h2:37,  hg:0.14, harmType:'triangle', lfo:0,  ld:0,   tremolo:0,    lilt:0,  sweep:true,  altUp:false, dist:true,  rev:false, noise:false, randFreq:false },
+  legendary_bigfoot:{ freq:75,   type:'sine', masterGain:0.08, dur:0.250, gap:0.110, up:0,   dn:0,  h2:37,  hg:0.14, harmType:'triangle', lfo:0,  ld:0,   tremolo:0,    lilt:0,  sweep:true,  altUp:false, dist:true,  rev:false, noise:false, randFreq:false },
   secret_rexey:     { freq:220,  type:'sine', masterGain:0.15, dur:0.160, gap:0.070, up:55,  dn:0,  h2:440, hg:0.07, harmType:'sine',     lfo:4,  ld:22,  tremolo:0.03, lilt:80, sweep:false, altUp:true,  dist:false, rev:true,  noise:false, randFreq:true  },
 };
 
-function _playVoice(shoesId, baseFreq, text) {
+function _playVoice(feetId, baseFreq, text) {
   const c = _ctx;
-  const prof = VOICE_PROFILES[shoesId];
+  const prof = VOICE_PROFILES[feetId];
   const syllDur = prof ? prof.dur : 0.08;
   const syllGap = prof ? prof.gap : 0.04;
   const syllCount = Math.min(
@@ -1217,7 +1217,7 @@ function _playVoice(shoesId, baseFreq, text) {
     osc.start(t);
 
     if (prof.sweep) {
-      // Bigshoe: arc 75 → 55 → 85 Hz
+      // Bigfoot: arc 75 → 55 → 85 Hz
       osc.frequency.setValueAtTime(75, t);
       osc.frequency.linearRampToValueAtTime(55, t + syllDur * 0.5);
       osc.frequency.linearRampToValueAtTime(85, endT);
@@ -1343,7 +1343,7 @@ function _playGenericVoice(baseFreq, syllCount) {
 
 // Per-character animation dispatch table; called from update() when _animActive
 const ANIM_DISPATCHERS = {
-  common_happyshoes: (npc, t) => {
+  common_happyfeet: (npc, t) => {
     const p = npc._parts;
     if (p[8]) p[8].position.y = 0.04 + Math.abs(Math.sin(t * Math.PI * 8)) * 0.12;
     if (p[9]) p[9].position.y = 0.04 + Math.abs(Math.sin(t * Math.PI * 8 + Math.PI)) * 0.12;
@@ -1472,7 +1472,7 @@ const ANIM_DISPATCHERS = {
     if (npc._leftArmPivot)  npc._leftArmPivot.rotation.z  = -Math.sin(t * Math.PI * 2.0) * 0.18;
     npc.group.position.y = (npc._origGroupPosY ?? 0) + (Math.abs(Math.sin(t * Math.PI * 2.4)) * 0.04);
   },
-  legendary_bigshoe: (npc, t) => {
+  legendary_bigfoot: (npc, t) => {
     const p = npc._parts;
     const stomp = Math.abs(Math.sin(t * Math.PI * 2.4));
     npc.group.position.y = (npc._origGroupPosY ?? 0) + (stomp * 0.22);
@@ -1504,14 +1504,14 @@ function makePRNG(seed) {
 // ── NPC class ─────────────────────────────────────────────────────────────────
 
 class NPC {
-  constructor(scene, position, rarity, name, legendaryPreset = null, shoesId = null, minigame = null, bodyScale = 1.0, isPenguin = false) {
+  constructor(scene, position, rarity, name, legendaryPreset = null, feetId = null, minigame = null, bodyScale = 1.0, isPenguin = false) {
     this.scene           = scene;
     this.rarity          = rarity;
     this.name            = name;
     this.legendaryPreset = legendaryPreset;
-    this.shoesId          = shoesId;
+    this.feetId          = feetId;
     this.minigame        = minigame;
-    this.shoesCollected   = false;
+    this.feetCollected   = false;
     this.isInDialogue    = false;
     this._dialogueEndTime = 0;
 
@@ -1547,8 +1547,8 @@ class NPC {
     }
 
     // Drive per-character animation when active (skip while KO'd)
-    if (this._animActive && this.shoesId && !this._kod) {
-      const fn = ANIM_DISPATCHERS[this.shoesId];
+    if (this._animActive && this.feetId && !this._kod) {
+      const fn = ANIM_DISPATCHERS[this.feetId];
       if (fn) fn(this, elapsedTime);
     }
 
@@ -1585,7 +1585,7 @@ class NPC {
     this.stopVoice();
     try {
       _initCtx();
-      this._activeNodes = _playVoice(this.shoesId, this._voiceFreq, text);
+      this._activeNodes = _playVoice(this.feetId, this._voiceFreq, text);
     } catch (e) {}
   }
 
@@ -1678,7 +1678,7 @@ class NPC {
     }
 
     // Apply per-NPC appearance config overrides
-    const cfg = this.shoesId ? APPEARANCE_CONFIGS[this.shoesId] : null;
+    const cfg = this.feetId ? APPEARANCE_CONFIGS[this.feetId] : null;
     if (cfg) {
       if (cfg.shirt !== undefined) shirtColor = cfg.shirt;
       if (cfg.pants !== undefined) pantColor  = cfg.pants;
@@ -1732,10 +1732,10 @@ class NPC {
       const mesh = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.38, 0.07), new THREE.MeshLambertMaterial({ color: 0x111111 }));
       mesh.position.set(0, -0.19, 0); pivot.add(mesh); this.group.add(pivot); this._parts.push(pivot);
       this._leftArmPivot = pivot; }
-    // Orange shoes
+    // Orange feet
     this._part(new THREE.BoxGeometry(0.20, 0.07, 0.22), 0xf5a623,  [ 0.10, 0.04, 0.04]);
     this._part(new THREE.BoxGeometry(0.20, 0.07, 0.22), 0xf5a623,  [-0.10, 0.04, 0.04]);
-    // Three forward toes per shoe
+    // Three forward toes per foot
     for (let side = -1; side <= 1; side += 2) {
       for (let t = -1; t <= 1; t++) {
         this._part(new THREE.CylinderGeometry(0.02, 0.02, 0.09, 5), 0xe8971a,
@@ -1853,7 +1853,7 @@ class NPCManager {
       }
       const npc = new NPC(
         scene, new THREE.Vector3(sx, 0, sz),
-        'legendary', def.name, def.preset, def.shoesId, null, def.bodyScale ?? 1.0,
+        'legendary', def.name, def.preset, def.feetId, null, def.bodyScale ?? 1.0,
       );
       this.npcs.push(npc);
       window.ALL_NPCS.push(npc);
@@ -1864,13 +1864,13 @@ class NPCManager {
     for (const def of SPECIAL_DEFS) {
       const sy = def.pos[1] ?? 0;
       let sx = def.pos[0], sz = def.pos[2];
-      if (def.shoesId !== 'secret_rexey' && sy === 0) {
+      if (def.feetId !== 'secret_rexey' && sy === 0) {
         const safe = _safeSpawn(def.pos[0], def.pos[2], colliders, 1.0);
         if (safe) { sx = safe[0]; sz = safe[1]; }
       }
       const npc = new NPC(
         scene, new THREE.Vector3(sx, sy, sz),
-        def.rarity, def.name, null, def.shoesId, def.minigame ?? null,
+        def.rarity, def.name, null, def.feetId, def.minigame ?? null,
         def.bodyScale ?? 1.0, def.isPenguin ?? false,
       );
       this.npcs.push(npc);
@@ -1879,9 +1879,9 @@ class NPCManager {
 
     // ── 60 randomly placed NPCs ──────────────────────────────────────────────
     const namedPool = [];
-    for (const [rar, ids] of Object.entries(SHOES_POOL)) {
+    for (const [rar, ids] of Object.entries(FEET_POOL)) {
       for (const fid of ids) {
-        namedPool.push({ rarity: rar, shoesId: fid, minigame: rar === 'mythic' ? 'rps' : null });
+        namedPool.push({ rarity: rar, feetId: fid, minigame: rar === 'mythic' ? 'rps' : null });
       }
     }
     for (let i = namedPool.length - 1; i > 0; i--) {
@@ -1905,14 +1905,14 @@ class NPCManager {
     for (const [x, z] of spawnPoints) {
       const entry    = namedPool.length > 0 ? namedPool.pop() : null;
       const rarity   = entry?.rarity   ?? 'none';
-      const shoesId   = entry?.shoesId   ?? null;
+      const feetId   = entry?.feetId   ?? null;
       const minigame = entry?.minigame ?? null;
-      const name     = SHOES_NAMES[shoesId] ?? NPC_NAMES[nameIdx++ % NPC_NAMES.length];
-      const bodyScale = shoesId === 'epic_lebron' ? 1.18 : 1.0;
+      const name     = FEET_NAMES[feetId] ?? NPC_NAMES[nameIdx++ % NPC_NAMES.length];
+      const bodyScale = feetId === 'epic_lebron' ? 1.18 : 1.0;
 
       const npc = new NPC(
         scene, new THREE.Vector3(x, 0, z),
-        rarity, name, null, shoesId, minigame, bodyScale,
+        rarity, name, null, feetId, minigame, bodyScale,
       );
       this.npcs.push(npc);
       window.ALL_NPCS.push(npc);
@@ -1927,13 +1927,13 @@ class NPCManager {
         if (!spawn) continue;
         const entry    = namedPool.length > 0 ? namedPool.pop() : null;
         const rarity   = entry?.rarity   ?? 'none';
-        const shoesId   = entry?.shoesId   ?? null;
+        const feetId   = entry?.feetId   ?? null;
         const minigame = entry?.minigame ?? null;
-        const name     = SHOES_NAMES[shoesId] ?? NPC_NAMES[nameIdx++ % NPC_NAMES.length];
-        const bodyScale = shoesId === 'epic_lebron' ? 1.18 : 1.0;
+        const name     = FEET_NAMES[feetId] ?? NPC_NAMES[nameIdx++ % NPC_NAMES.length];
+        const bodyScale = feetId === 'epic_lebron' ? 1.18 : 1.0;
         const npc = new NPC(
           scene, new THREE.Vector3(spawn.x, spawn.y, spawn.z),
-          rarity, name, null, shoesId, minigame, bodyScale,
+          rarity, name, null, feetId, minigame, bodyScale,
         );
         this.npcs.push(npc);
         window.ALL_NPCS.push(npc);
@@ -2069,27 +2069,27 @@ function _spawnInZone(zone, colliders) {
 
 
 // ── minigame.js ─────────────────────────────────────────────
-// ── Per-mythic NPC RPS data (keyed by shoesId) ─────────────────────────────────
+// ── Per-mythic NPC RPS data (keyed by feetId) ─────────────────────────────────
 const RPS_NPC_DATA = {
   mythic_clav: {
     displayName: 'Clav',
-    winLine:  "...GG. Frame data doesn't lie. You outplayed me. The shoes are yours.",
+    winLine:  "...GG. Frame data doesn't lie. You outplayed me. The feet are yours.",
     lossLine: "Skill issue. Come back when you've labbed it out.",
   },
   mythic_patapim: {
     displayName: 'Brr Brr Patapim',
-    winLine:  "AHHH YOU WON!! PATAPIM ENERGY TRANSFER COMPLETE!! TAKE THE SHOES!!",
+    winLine:  "AHHH YOU WON!! PATAPIM ENERGY TRANSFER COMPLETE!! TAKE THE FEET!!",
     lossLine: "NOOOO!! The patapim energy was too strong!! Try again!! TRY AGAIN!!",
   },
   mythic_messi: {
     displayName: 'Leo Messi',
-    winLine:  "Good. You have fast hands. The Golden Shoe is yours to see.",
+    winLine:  "Good. You have fast hands. The Golden Foot is yours to see.",
     lossLine: "Not today. Train more. Come back.",
   },
 };
 
-function getRPSNpcData(shoesId) {
-  return RPS_NPC_DATA[shoesId] ?? { displayName: '???', winLine: 'You win.', lossLine: 'You lose.' };
+function getRPSNpcData(feetId) {
+  return RPS_NPC_DATA[feetId] ?? { displayName: '???', winLine: 'You win.', lossLine: 'You lose.' };
 }
 
 // ── RPS helpers ───────────────────────────────────────────────────────────────
@@ -2534,7 +2534,7 @@ class CombatEncounter {
     const npc = this._npc;
     npc._inCombat = false;
     if (this._koTime > 0) {
-      npc._kod = true;   // KO pose retained until they offer their shoes
+      npc._kod = true;   // KO pose retained until they offer their feet
     } else {
       // Reset transient combat poses if they retreated mid-fight
       npc.group.rotation.x = this._origGroupRotX;
@@ -2671,13 +2671,13 @@ function _injectCSS() {
     #discovery-overlay.discover-legendary { background:#000000; }
     #discovery-overlay.discover-secret    { background:#fffde7; }
 
-    /* Shoe icon color per rarity */
-    #discovery-overlay.discover-common    #discovery-shoe { color:#ffffff; }
-    #discovery-overlay.discover-rare      #discovery-shoe { color:#4caf50; }
-    #discovery-overlay.discover-epic      #discovery-shoe { color:#ce93d8; }
-    #discovery-overlay.discover-mythic    #discovery-shoe { color:#ff6d00; }
-    #discovery-overlay.discover-legendary #discovery-shoe { color:#ffd700; width:100px; height:125px; }
-    #discovery-overlay.discover-secret    #discovery-shoe { color:#c8a45a; }
+    /* Foot icon color per rarity */
+    #discovery-overlay.discover-common    #discovery-foot { color:#ffffff; }
+    #discovery-overlay.discover-rare      #discovery-foot { color:#4caf50; }
+    #discovery-overlay.discover-epic      #discovery-foot { color:#ce93d8; }
+    #discovery-overlay.discover-mythic    #discovery-foot { color:#ff6d00; }
+    #discovery-overlay.discover-legendary #discovery-foot { color:#ffd700; width:100px; height:125px; }
+    #discovery-overlay.discover-secret    #discovery-foot { color:#c8a45a; }
 
     /* Name text color per rarity */
     #discovery-overlay.discover-rare      #discovery-name { color:#c8e6c9; }
@@ -2689,11 +2689,11 @@ function _injectCSS() {
 
     /* Applied animations */
     #discovery-overlay.discover-mythic    { animation:disc-shake .3s ease-out; }
-    #discovery-overlay.discover-mythic    #discovery-shoe { animation:disc-pulse-icon .5s ease-in-out 2; }
-    #discovery-overlay.discover-epic      #discovery-shoe { animation:disc-spin-once .6s ease-in-out; }
-    #discovery-overlay.discover-legendary #discovery-shoe { animation:disc-zoom-in .8s ease-out forwards; }
+    #discovery-overlay.discover-mythic    #discovery-foot { animation:disc-pulse-icon .5s ease-in-out 2; }
+    #discovery-overlay.discover-epic      #discovery-foot { animation:disc-spin-once .6s ease-in-out; }
+    #discovery-overlay.discover-legendary #discovery-foot { animation:disc-zoom-in .8s ease-out forwards; }
     #discovery-overlay.discover-legendary #discovery-border { animation:disc-gold-border 1s ease-in-out infinite; }
-    #discovery-overlay.discover-secret    #discovery-shoe  { animation:disc-slow-pulse 2s ease-in-out infinite; }
+    #discovery-overlay.discover-secret    #discovery-foot  { animation:disc-slow-pulse 2s ease-in-out infinite; }
 
     /* Keyframes */
     @keyframes disc-flash-in    { 0%,12%{opacity:.9} 100%{opacity:0} }
@@ -2733,7 +2733,7 @@ function _injectCSS() {
     .dlg-voice-mythic_clav     #dialogue-npc-name { color:#00ffcc; animation:dlg-glitch  .44s steps(2) infinite; }
     .dlg-voice-mythic_messi    #dialogue-npc-name { color:#ffd700; }
     .dlg-voice-legendary_margot  #dialogue-npc-name { color:#ffd700; animation:dlg-shimmer 1.8s ease-in-out infinite; }
-    .dlg-voice-legendary_bigshoe #dialogue-npc-name { color:#b09070; animation:dlg-tremor  .9s  ease-in-out infinite; }
+    .dlg-voice-legendary_bigfoot #dialogue-npc-name { color:#b09070; animation:dlg-tremor  .9s  ease-in-out infinite; }
     .dlg-voice-secret_rexey    #dialogue-npc-name { color:#c8a45a; font-style:italic; animation:dlg-glow-warm 3s ease-in-out infinite; }
     .dlg-voice-secret_rexey    #dialogue-text     { letter-spacing:.04em; }
 
@@ -2771,58 +2771,58 @@ const COMMON_SCRIPTS = {
   common_samurai: [
     "I have walked from Kyoto to Osaka, from Osaka to San Francisco, and now... Times Square. I do not know why I am here.",
     "The subway map makes no sense. There are no rice paper screens. Everything smells like a pretzel.",
-    "I sought the greatest dojo in the world. My GPS led me to a Subway sandwich shop. I ate a shoelong. I do not know what I am becoming.",
+    "I sought the greatest dojo in the world. My GPS led me to a Subway sandwich shop. I ate a footlong. I do not know what I am becoming.",
     "...but my geta still carry the dust of the Tokaido road. They have not forgotten, even if I have.",
   ],
   common_bill: [
     "Oh, hey! Sorry, didn't see you there — I was just reading this incredibly niche blog post about the thermal properties of wool socks.",
     "People always ask if gingers have souls. I say: we have soles. Shoe soles. New Balance 574s specifically.",
-    "I tried a spray tan once. My shoes turned the color of a sweet potato. My podiatrist thought I had a medical condition.",
+    "I tried a spray tan once. My feet turned the color of a sweet potato. My podiatrist thought I had a medical condition.",
     "Anyway, wanna see? They're kind of... a lot. But in a good way, I think.",
   ],
   common_gymrat: [
     "Bro. BRO. Do you even lift? Because I just hit a 405 deadlift and my CNS is fried but I feel INCREDIBLE.",
-    "People sleep on shoe calluses. That's structural integrity, man. You can't PR without a solid base. The shoes ARE the foundation.",
-    "I train bareshoe sometimes. Coach told me to wear shoes. I said 'Coach, my shoes ARE shoes at this point.'",
+    "People sleep on foot calluses. That's structural integrity, man. You can't PR without a solid base. The feet ARE the foundation.",
+    "I train barefoot sometimes. Coach told me to wear shoes. I said 'Coach, my feet ARE shoes at this point.'",
     "Here, look. Don't touch though. Or do touch, I don't care. I've stopped caring about a lot of things since I started training twice a day.",
   ],
   common_50shades: [
     "I don't believe in color. Color is a distraction. Grey is the only honest shade.",
     "My therapist says I have a 'fixation.' I say I have a 'philosophy.' We agreed to disagree. She was wearing beige. We did not agree to disagree.",
     "These heels are Pantone 18-0306. Pewter. The most underappreciated grey. Not too warm, not too cool. Perfect control.",
-    "Look at these heels. Fifty shades, but shoes. You understand. Most people don't.",
+    "Look at these heels. Fifty shades, but feet. You understand. Most people don't.",
   ],
-  common_happyshoes: [
+  common_happyfeet: [
     "*tap tap tap* ...Oh! Sorry. I can't help it. The rhythm just... comes out.",
     "Everyone told me penguins can't tap dance. Everyone. My dad, the elders, some guy on TripAdvisor. I proved them ALL wrong.",
     "New York is the only city that understood me. You hear the beat in the subway grates? That's my soundtrack now. This city TAPS.",
-    "*looks down at shoes proudly* ...These brought me here. They'll take me anywhere.",
+    "*looks down at feet proudly* ...These brought me here. They'll take me anywhere.",
   ],
 };
 
 const RARE_SCRIPTS = {
   rare_trex: [
-    "HELLO. I AM NORMAL PERSON. I AM DEFINITELY NOT A DINOSAUR. Please stop looking at my shoes.",
-    "I work in finance. I take the subway. I eat at Shake Shack. Normal human activities. I enjoy all of them with my normal human shoes.",
+    "HELLO. I AM NORMAL PERSON. I AM DEFINITELY NOT A DINOSAUR. Please stop looking at my feet.",
+    "I work in finance. I take the subway. I eat at Shake Shack. Normal human activities. I enjoy all of them with my normal human feet.",
     "...The tie was my idea. It says 'professional.' My therapist says it says 'compensating.' She is not wrong.",
     "...Fine. FINE. Look at them. But I'm still a person. Fiscally responsible and everything.",
   ],
   rare_gramma: [
     "Oh sweetheart! Are you lost? You look lost. Or hungry. You look like you could use a snack. I have oatmeal raisin.",
-    "I've lived in this city 74 years. Used to walk everywhere in heels. Now I wouldn't trade these slippers for anything. My shoes have earned their rest.",
+    "I've lived in this city 74 years. Used to walk everywhere in heels. Now I wouldn't trade these slippers for anything. My feet have earned their rest.",
     "My granddaughter says orthopaedic slippers aren't fashionable. I said, 'Baby girl, I MADE fashion. Fashion retired. I'm still here.'",
-    "Look at these things. Soft as clouds. I embroidered the daisies myself. These shoes raised four children and outlasted three mayors.",
+    "Look at these things. Soft as clouds. I embroidered the daisies myself. These feet raised four children and outlasted three mayors.",
   ],
   rare_colonel: [
     "Son, I was 65 years old when I franchised my first restaurant. 65. You know what most people do at 65? They retire. I built an empire.",
     "People ask me: Colonel, what's the secret? I say the secret is in the pressure. The pressure cooker. The pressure of never giving up.",
-    "I drove across this country in a car, selling my recipe out of the trunk. Rejected 1,009 times. 1,009! And I kept going. My shoes carried me every step.",
-    "These shoes have walked more miles than most folks drive. And they're still shining. Finger lickin' good? These shoes are toe lickin' good, son.",
+    "I drove across this country in a car, selling my recipe out of the trunk. Rejected 1,009 times. 1,009! And I kept going. My feet carried me every step.",
+    "These shoes have walked more miles than most folks drive. And they're still shining. Finger lickin' good? These feet are toe lickin' good, son.",
   ],
   rare_cheerleader: [
     "V-I-C-T-O-R-Y! That's — wait, sorry. Habit. Hi! I'm Brianna. I've been cheering since I could walk. Literally.",
-    "People think cheerleading is just jumping around. It's gymnastics, it's dance, it's SPORT. My left shoe has been taped since sophomore year and it has NEVER let me down.",
-    "Coach always said: your foundation is your shoes. Strong shoes, strong cheer. I've taken that into every part of my life. Job interview? Strong shoes. First date? Strong shoes.",
+    "People think cheerleading is just jumping around. It's gymnastics, it's dance, it's SPORT. My left foot has been taped since sophomore year and it has NEVER let me down.",
+    "Coach always said: your foundation is your feet. Strong feet, strong cheer. I've taken that into every part of my life. Job interview? Strong feet. First date? Strong feet.",
     "Okay but seriously look at my sneakers. Do you see the arch support on these things? I EARNED this arch support.",
   ],
 };
@@ -2830,53 +2830,53 @@ const RARE_SCRIPTS = {
 const EPIC_SCRIPTS = {
   epic_lebron: [
     "Ay, what's good. You play? No? That's cool, that's cool. Not everyone's built for the game. But everybody's built for SOMETHING.",
-    "My shoes have carried me from Akron to four championships. People talk about the hands, the handles, the IQ — but the SHOES? The shoes don't lie. You can see it in the wear patterns.",
-    "I eat right, I sleep right, I recover right. My body is my business. I spend over a million dollars a year maintaining it. My shoes get the same treatment as everything else. More, actually.",
+    "My feet have carried me from Akron to four championships. People talk about the hands, the handles, the IQ — but the FEET? The feet don't lie. You can see it in the wear patterns.",
+    "I eat right, I sleep right, I recover right. My body is my business. I spend over a million dollars a year maintaining it. My feet get the same treatment as everything else. More, actually.",
     "Size 15. People always gotta look. Go ahead. I've made peace with the attention.",
   ],
   epic_sonion: [
     "Ah. You found me. Most people look right through me, which is technically accurate on Tuesdays.",
-    "My name? It's exactly what it sounds like once you've heard it enough times. The shoes are a whole other conversation. Are you ready for that conversation?",
+    "My name? It's exactly what it sounds like once you've heard it enough times. The feet are a whole other conversation. Are you ready for that conversation?",
     "I've been called 'an experience,' 'a walking EULA,' and once, memorably, 'the reason I updated my priors.' I take all of these as compliments.",
-    "These shoes have walked between things. Not through them — BETWEEN them. The shoes are just where they rest when I'm being observed.",
+    "These feet have walked between things. Not through them — BETWEEN them. The shoes are just where they rest when I'm being observed.",
   ],
   epic_sydney: [
     "Hi! I'm just a regular person. Just a totally normal person walking around New York. Definitely not anyone you'd recognize. Please don't photograph me.",
     "My job? I, um. I do things. Professionally. Physical things. For a production. A production I can't name. The NDA is very thorough.",
-    "I will say this: the person I work for has great taste in shoewear. Very particular about it. So naturally, as her... colleague... I have also developed great taste.",
+    "I will say this: the person I work for has great taste in footwear. Very particular about it. So naturally, as her... colleague... I have also developed great taste.",
     "These boots? They've fallen from things. Heights I'm not allowed to specify. But they've always landed right.",
   ],
 };
 
 const MYTHIC_SCRIPTS = {
   mythic_clav: [
-    "Oh, you want to SEE the shoes? Bold. Most people aren't ready for shoes that optimized. The frame data alone requires a 10-page spreadsheet.",
-    "These have a 0.003 second faster ground contact time than standard human shoes. I modded the insoles. I wrote the insoles. The insoles run Debian.",
-    "You think you deserve to see Framemog Shoes? Let's find out. I don't hand out access to just anyone. This requires a hands-on review.",
-    "Put up your fists. If you can land a clean combo on me, I'll show you the shoes. No mercy mode. Engage.",
+    "Oh, you want to SEE the feet? Bold. Most people aren't ready for feet that optimized. The frame data alone requires a 10-page spreadsheet.",
+    "These have a 0.003 second faster ground contact time than standard human feet. I modded the insoles. I wrote the insoles. The insoles run Debian.",
+    "You think you deserve to see Framemog Feet? Let's find out. I don't hand out access to just anyone. This requires a hands-on review.",
+    "Put up your fists. If you can land a clean combo on me, I'll show you the feet. No mercy mode. Engage.",
   ],
   mythic_patapim: [
     "BRR BRR! Hello hello hello! You found me! Most people walk past! I am RIGHT HERE though! RIGHT HERE THE WHOLE TIME!",
-    "My shoes are VERY fast. They are always going somewhere even when I am standing still. Can you FEEL it? The patapim energy?",
-    "You want to see my shoes? You have to EARN the patapim energy! No words! No scrambling! BRR BRR FISTS! BRR BRR FISTS!",
+    "My feet are VERY fast. They are always going somewhere even when I am standing still. Can you FEEL it? The patapim energy?",
+    "You want to see my feet? You have to EARN the patapim energy! No words! No scrambling! BRR BRR FISTS! BRR BRR FISTS!",
     "I CHASE! I SWING! YOU DODGE! KNOCK ME DOWN AND PATAPIM POWER IS YOURS!",
   ],
   mythic_messi: [
     "Hola. No, I'm not doing selfies today. ...Okay, maybe one selfie. Just one.",
-    "People always ask about the left shoe. Yes. It is special. I don't fully understand it either. It does what I ask. Usually more.",
-    "To see the Golden Shoe, you must earn it. With your hands. With your shoework. The way the game was meant to be played.",
-    "Vamos. Hands up. If you can put me on the ground, the Golden Shoe is yours.",
+    "People always ask about the left foot. Yes. It is special. I don't fully understand it either. It does what I ask. Usually more.",
+    "To see the Golden Foot, you must earn it. With your hands. With your footwork. The way the game was meant to be played.",
+    "Vamos. Hands up. If you can put me on the ground, the Golden Foot is yours.",
   ],
 };
 
-// Short 2-line script shown when legendary shoes are already collected
+// Short 2-line script shown when legendary feet are already collected
 function _getLegendaryCollectedLines(name) {
   const lines = {
     'Margot Robbie': [
       "You again. Still thinking about the Manolos?",
       "They're not going anywhere. Neither am I. Stay curious.",
     ],
-    'Bigshoe (Gary)': [
+    'Bigfoot (Gary)': [
       "Back again. I respect the dedication.",
       "I'm just Gary. You know where to find me.",
     ],
@@ -2901,18 +2901,18 @@ function _getLegendaryLines(name, count) {
       ],
       [
         "Third time. I respect the commitment.",
-        "Alright. Here. These shoes have walked premieres, press tours, morning shows, after-parties, hotel lobbies at 3am.",
+        "Alright. Here. These feet have walked premieres, press tours, morning shows, after-parties, hotel lobbies at 3am.",
         "The Manolos have a name. Her name is Barbie. Obviously.",
         "The gold star was for luck. It worked.",
         "Add them to your collection. You've earned it.",
       ],
     ],
-    'Bigshoe (Gary)': [
+    'Bigfoot (Gary)': [
       [
         "...Oh. You can see me. Most people can't. Or... won't.",
-        "The name's Gary. I know what you're thinking. Everyone calls me 'Bigshoe.' I prefer Gary.",
+        "The name's Gary. I know what you're thinking. Everyone calls me 'Bigfoot.' I prefer Gary.",
         "I moved to New York three years ago. Best decision I ever made. Nobody looks twice at anything here.",
-        "The shoes are a sensitive topic. Come back if you want to know more.",
+        "The feet are a sensitive topic. Come back if you want to know more.",
       ],
       [
         "Gary again. Good memory.",
@@ -2935,10 +2935,10 @@ function _getLegendaryLines(name, count) {
 function _getSecretLines() {
   return [
     "Ah. You found the alley. Most don't. You weren't looking for me specifically, were you? No. You were just curious. That's exactly right.",
-    "I've been here since before the city. I'll be here after. The shoes are the oldest part of a person. They carry everything the mind has already forgotten.",
+    "I've been here since before the city. I'll be here after. The feet are the oldest part of a person. They carry everything the mind has already forgotten.",
     "Every blister tells you where you've pushed too hard. Every callus tells you where you kept going. The arch tells you who raised you. The toes tell you where you're going.",
-    "You've collected quite a few shoes. I've been watching your progress. Not in a strange way. In the way that oceans watch ships.",
-    "These? These shoes have walked the ancient roads. They've been dust and bone and healed again. They carry no brand. They answer to no cobbler.",
+    "You've collected quite a few feet. I've been watching your progress. Not in a strange way. In the way that oceans watch ships.",
+    "These? These feet have walked the ancient roads. They've been dust and bone and healed again. They carry no brand. They answer to no cobbler.",
     "Look. Take your time. There is nothing that cannot be helped by looking more carefully at what carries you.",
   ];
 }
@@ -2987,7 +2987,7 @@ class UI {
       pauseMenu:     document.getElementById('pause-menu'),
       pauseCount:    document.getElementById('pause-count'),
       pauseResume:   document.getElementById('pause-resume'),
-      pauseShoesdex:  document.getElementById('pause-shoedex'),
+      pauseFeetdex:  document.getElementById('pause-shoedex'),
       pauseReset:    document.getElementById('pause-reset'),
       volSlider:     document.getElementById('vol-slider'),
       winScreen:     document.getElementById('win-screen'),
@@ -3022,7 +3022,7 @@ class UI {
   // ── HUD ───────────────────────────────────────────────────────────────────
 
   updateCollection(count, total) {
-    this._el.collection.textContent = `Shoes collected: ${count} / ${total}`;
+    this._el.collection.textContent = `Feet collected: ${count} / ${total}`;
   }
 
   setInteractHint(text) {
@@ -3059,7 +3059,7 @@ class UI {
 
     // Voice class — animates name label for mythic/legendary/secret
     if (this._voiceClassActive) this._el.dialoguePanel.classList.remove(this._voiceClassActive);
-    this._voiceClassActive = _voiceClass(npc.shoesId, npc.rarity);
+    this._voiceClassActive = _voiceClass(npc.feetId, npc.rarity);
     if (this._voiceClassActive) this._el.dialoguePanel.classList.add(this._voiceClassActive);
 
     this._el.dialoguePanel.classList.add('active');
@@ -3075,7 +3075,7 @@ class UI {
    * Returns:
    *   'typing'         — skipped typewriter; wait for another E
    *   'next'           — advanced to next line
-   *   'done'           — all lines, no shoes (none rarity or legendary incomplete)
+   *   'done'           — all lines, no feet (none rarity or legendary incomplete)
    *   'discover'       — all lines done, common/rare/epic → show discovery overlay
    *   'challenge'      — mythic last line done → launch minigame
    *   'legendary_done' — legendary dialogue complete (encounter registered externally)
@@ -3145,7 +3145,7 @@ class UI {
       ? '??? SECRET FOUND ???'
       : (BADGE_LABELS[rarity] ?? rarity.toUpperCase());
     this._el.discRarity.className   = 'r-' + rarity;
-    this._el.discTitle.textContent  = rarity === 'legendary' ? 'LEGENDARY SHOES DISCOVERED!'
+    this._el.discTitle.textContent  = rarity === 'legendary' ? 'LEGENDARY FEET DISCOVERED!'
                                     : rarity === 'secret'    ? ''
                                     : 'DISCOVERED!';
     this._el.discName.textContent   = shoeEntry.name;
@@ -3163,7 +3163,7 @@ class UI {
 
   /**
    * Called on E press while discovery overlay is open.
-   * Returns the shoes entry so main.js can call shoedex.collect(id).
+   * Returns the feet entry so main.js can call shoedex.collect(id).
    */
   confirmDiscovery() {
     const entry = this._pendingEntry;
@@ -3191,7 +3191,7 @@ class UI {
   // ── Pause menu ────────────────────────────────────────────────────────────
 
   openPause(shoedex) {
-    this._el.pauseCount.textContent = `Shoes collected: ${shoedex.count} / ${shoedex.total}`;
+    this._el.pauseCount.textContent = `Feet collected: ${shoedex.count} / ${shoedex.total}`;
     this._el.pauseMenu.classList.add('active');
   }
 
@@ -3223,7 +3223,7 @@ class UI {
     this._isTyping    = true;
     this._el.dlgText.textContent = '';
     let i = 0;
-    const npcId  = this._dlgNPC?.shoesId ?? '';
+    const npcId  = this._dlgNPC?.feetId ?? '';
     const rarity = this._dlgNPC?.rarity ?? 'none';
     const speed  = _typeSpeed(npcId, rarity);
     this._typeTimer = setInterval(() => {
@@ -3247,12 +3247,12 @@ class UI {
   _getLines(npc, legendaryCount) {
     switch (npc.rarity) {
       case 'none':      return [NONE_LINES[Math.floor(Math.random() * NONE_LINES.length)]];
-      case 'common':    return COMMON_SCRIPTS[npc.shoesId] ?? ["Nice kicks.", "Can't go wrong with the classics."];
-      case 'rare':      return RARE_SCRIPTS[npc.shoesId]   ?? ["Let me tell you about these.", "Real craftsmanship.", "Worth every penny."];
-      case 'epic':      return EPIC_SCRIPTS[npc.shoesId]   ?? ["You have taste.", "Not off the shelf.", "Long story.", "You wouldn't believe me."];
-      case 'mythic':    return MYTHIC_SCRIPTS[npc.shoesId] ?? MYTHIC_SCRIPTS['m1'];
+      case 'common':    return COMMON_SCRIPTS[npc.feetId] ?? ["Nice kicks.", "Can't go wrong with the classics."];
+      case 'rare':      return RARE_SCRIPTS[npc.feetId]   ?? ["Let me tell you about these.", "Real craftsmanship.", "Worth every penny."];
+      case 'epic':      return EPIC_SCRIPTS[npc.feetId]   ?? ["You have taste.", "Not off the shelf.", "Long story.", "You wouldn't believe me."];
+      case 'mythic':    return MYTHIC_SCRIPTS[npc.feetId] ?? MYTHIC_SCRIPTS['m1'];
       case 'legendary':
-        if (npc.shoesCollected) return _getLegendaryCollectedLines(npc.name);
+        if (npc.feetCollected) return _getLegendaryCollectedLines(npc.name);
         return _getLegendaryLines(npc.name, legendaryCount); // 0-indexed: 0=1st, 1=2nd, 2=3rd
       case 'secret':    return _getSecretLines();
       default:          return ["..."];
@@ -3375,7 +3375,7 @@ class UI {
       this.closePause();
       this.onResume?.();
     });
-    this._el.pauseShoesdex.addEventListener('click', () => {
+    this._el.pauseFeetdex.addEventListener('click', () => {
       this.closePause();
       this.onOpenShoeDex?.();
     });
@@ -3627,7 +3627,7 @@ function buildGenericBuildings(scene, blocks, solidObjects) {
       const w        = 4 + rng() * Math.max(0, segW * 0.75 - 4);
       const d        = 4 + rng() * Math.max(0, bd   * 0.75 - 4);
 
-      // Clamp so the entire building shoeprint stays within the block's inner
+      // Clamp so the entire building footprint stays within the block's inner
       // bounds — never extending past the sidewalk into the road.
       const xMin = blk.x1 + SIDEWALK_W + w / 2;
       const xMax = blk.x2 - SIDEWALK_W - w / 2;
@@ -3687,7 +3687,7 @@ function buildGenericBuildings(scene, blocks, solidObjects) {
     }
   }
 
-  // Register every building shoeprint for player collision
+  // Register every building footprint for player collision
   for (const b of bldData) {
     registerSolid(solidObjects, b.cx, b.cz, b.w / 2, b.d / 2);
   }
@@ -4335,7 +4335,7 @@ function buildStreets(scene, blocks) {
   scene.add(roadMesh);
 
   // Concrete sidewalk on every buildable block — but SKIP blocks that fall
-  // inside the Central Park shoeprint, otherwise the off-white sidewalk
+  // inside the Central Park footprint, otherwise the off-white sidewalk
   // overlaps the green park grass at the same y and causes white flicker.
   const swMat = new THREE.MeshLambertMaterial({ color: 0xC8C0B0 });
   for (const blk of blocks) {
@@ -6775,7 +6775,7 @@ function buildLowerManhattan(scene, solidObjects) {
   bx(0xddf0ff, 0, 194, -10, 4, 10, 4);    // spire base
   bx(0xffffff, 0, 200, -10, 1.5, 10, 1.5);// spire tip
 
-  // WTC memorial pool #1 (South Tower shoeprint)
+  // WTC memorial pool #1 (South Tower footprint)
   bx(0x111111, -8, 0.05, 12, 12, 0.1, 12);
   const pool1 = new THREE.Mesh(new THREE.PlaneGeometry(10, 10),
     new THREE.MeshStandardMaterial({ color:0x1a3d5c, emissive:0x001122, emissiveIntensity:0.4 }));
@@ -6783,7 +6783,7 @@ function buildLowerManhattan(scene, solidObjects) {
   pool1.position.set(ox - 8, 0.08, oz + 12);
   scene.add(pool1);
 
-  // WTC memorial pool #2 (North Tower shoeprint)
+  // WTC memorial pool #2 (North Tower footprint)
   bx(0x111111, 8, 0.05, 12, 12, 0.1, 12);
   const pool2 = pool1.clone();
   pool2.position.set(ox + 8, 0.08, oz + 12);
@@ -7098,7 +7098,7 @@ function buildOuterBuffer(scene, solidObjects) {
     // Brooklyn Bridge area (wider buffer so generic buildings nearby don't
     // get phased by buffer fillers)
     if (cx > -90 && cx < -30 && cz > -160 && cz < -35) return true;
-    // Secret alley shoeprint in the NW outskirts (don't block the entrance)
+    // Secret alley footprint in the NW outskirts (don't block the entrance)
     if (cx > -145 && cx < -100 && cz > -245 && cz < -210) return true;
     return false;
   }
@@ -7377,111 +7377,6 @@ class World {
 }
 
 
-
-class QuestionManager {
-  constructor() {
-    this.createQuestionUI();
-  }
-
-  createQuestionUI() {
-    // Add question overlay HTML if it doesn't exist
-    if (!document.getElementById('question-overlay')) {
-      const questionHTML = `
-        <div id="question-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 300;
-             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-family: 'Courier New', monospace;">
-          <div id="question-container" style="max-width: 600px; padding: 40px; text-align: center; border: 2px solid #fff; background: rgba(0,0,0,0.8);">
-            <div id="question-timer" style="font-size: 18px; color: #ff6b6b; margin-bottom: 20px;">Time: 15s</div>
-            <h2 id="question-text" style="margin-bottom: 30px; font-size: 22px; line-height: 1.4;"></h2>
-            <div id="question-options" style="display: grid; gap: 15px;"></div>
-            <div id="question-explanation" style="margin-top: 20px; font-size: 14px; color: #aaa; display: none;"></div>
-          </div>
-        </div>
-      `;
-      document.body.insertAdjacentHTML('beforeend', questionHTML);
-    }
-  }
-
-  showQuestion(shoeId, onAnswer) {
-    const questionData = SHOE_QUESTIONS[shoeId];
-    if (!questionData) {
-      onAnswer(true); // No question available, allow collection
-      return;
-    }
-
-    this.currentQuestion = questionData;
-    this.onAnswerCallback = onAnswer;
-    this.timeLeft = 15;
-
-    // Setup UI
-    document.getElementById('question-text').textContent = questionData.question;
-    document.getElementById('question-explanation').style.display = 'none';
-
-    const optionsContainer = document.getElementById('question-options');
-    optionsContainer.innerHTML = '';
-
-    questionData.options.forEach((option, index) => {
-      const button = document.createElement('button');
-      button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
-      button.style.cssText = `
-        padding: 12px 20px; background: rgba(255,255,255,0.1); border: 1px solid #fff;
-        color: white; cursor: pointer; font-size: 16px; transition: background 0.2s;
-      `;
-      button.onmouseover = () => button.style.background = 'rgba(255,255,255,0.2)';
-      button.onmouseout = () => button.style.background = 'rgba(255,255,255,0.1)';
-      button.onclick = () => this.answerQuestion(index);
-      optionsContainer.appendChild(button);
-    });
-
-    // Show overlay and start timer
-    document.getElementById('question-overlay').style.display = 'flex';
-    this.startTimer();
-  }
-
-  startTimer() {
-    this.timer = setInterval(() => {
-      this.timeLeft--;
-      document.getElementById('question-timer').textContent = `Time: ${this.timeLeft}s`;
-      if (this.timeLeft <= 0) {
-        this.timeUp();
-      }
-    }, 1000);
-  }
-
-  answerQuestion(selectedIndex) {
-    clearInterval(this.timer);
-    const correct = selectedIndex === this.currentQuestion.correct;
-
-    // Show explanation
-    const explanationDiv = document.getElementById('question-explanation');
-    explanationDiv.textContent = this.currentQuestion.explanation;
-    explanationDiv.style.display = 'block';
-    explanationDiv.style.color = correct ? '#4CAF50' : '#ff6b6b';
-
-    // Hide overlay after showing result
-    setTimeout(() => {
-      document.getElementById('question-overlay').style.display = 'none';
-      if (this.onAnswerCallback) {
-        this.onAnswerCallback(correct);
-      }
-    }, 3000);
-  }
-
-  timeUp() {
-    clearInterval(this.timer);
-    const explanationDiv = document.getElementById('question-explanation');
-    explanationDiv.textContent = `Time's up! Correct answer: ${this.currentQuestion.options[this.currentQuestion.correct]}. ${this.currentQuestion.explanation}`;
-    explanationDiv.style.display = 'block';
-    explanationDiv.style.color = '#ff6b6b';
-
-    setTimeout(() => {
-      document.getElementById('question-overlay').style.display = 'none';
-      if (this.onAnswerCallback) {
-        this.onAnswerCallback(false);
-      }
-    }, 3000);
-  }
-}
-
 // ── main.js ─────────────────────────────────────────────
 
 // Build marker so we can confirm the latest code is actually loaded.
@@ -7529,7 +7424,7 @@ const shoedex = new ShoeDex();
 const ui      = new UI();
 const npcMgr  = new NPCManager(scene, world.colliders);
 npcMgr.addInteriorNpcs(scene, world.interiorNpcSpawns);
-const player  = new Player(camera, input, () => Audio.shoestep());
+const player  = new Player(camera, input, () => Audio.footstep());
 player.setFloorFn((x, z, cy) => world.getFloorY(x, z, cy));
 
 const interaction = new InteractionSystem(camera, scene, player);
@@ -7604,7 +7499,7 @@ ui.onPlayAgain = () => {
 };
 
 // ShoeDex close button — ui.js fires its own DOM event; also update state here
-document.getElementById('sdex-close-btn').addEventListener('click', () => {
+document.getElementById('fdex-close-btn').addEventListener('click', () => {
   if (state === 'shoedex') {
     ui.closeShoeDex();
     state = 'playing';
@@ -7632,7 +7527,7 @@ function _handleE() {
         // and the encounter label will be empty (array index out of bounds → '').
         let dlgCount = 0;
         if (_activeNPC.rarity === 'legendary') {
-          if (_activeNPC.shoesCollected) {
+          if (_activeNPC.feetCollected) {
             dlgCount = 99;
           } else {
             dlgCount = shoedex.incrementLegendary(_activeNPC.name) - 1;
@@ -7664,7 +7559,7 @@ function _handleE() {
       if (entry) {
         const isNew = shoedex.collect(entry.id);
         if (isNew) {
-          if (_activeNPC) _activeNPC.shoesCollected = true;
+          if (_activeNPC) _activeNPC.feetCollected = true;
           ui.updateCollection(shoedex.count, shoedex.total);
           if (shoedex.isComplete) {
             state = 'playing';
@@ -7694,7 +7589,7 @@ function _handleDialogueResult(result) {
   }
 
   if (result === 'discover') {
-    const entry = _activeNPC ? shoedex.getEntry(_activeNPC.shoesId) : null;
+    const entry = _activeNPC ? shoedex.getEntry(_activeNPC.feetId) : null;
     if (entry && !shoedex.has(entry.id)) {
       ui.closeDialogue();
       ui.showDiscovery(entry, _activeNPC);
@@ -7714,7 +7609,7 @@ function _handleDialogueResult(result) {
 
   if (result === 'challenge') {
     ui.closeDialogue();
-    if (_activeNPC && shoedex.has(_activeNPC.shoesId)) {
+    if (_activeNPC && shoedex.has(_activeNPC.feetId)) {
       state = 'playing';
       _activeNPC = null;
       requestLock();
@@ -7734,11 +7629,11 @@ function _handleDialogueResult(result) {
   if (result === 'legendary_done') {
     ui.closeDialogue();
 
-    // 3rd encounter AND shoes not yet collected → trigger legendary discovery
-    if (_activeNPC && !_activeNPC.shoesCollected && _activeNPC.shoesId) {
+    // 3rd encounter AND feet not yet collected → trigger legendary discovery
+    if (_activeNPC && !_activeNPC.feetCollected && _activeNPC.feetId) {
       const count = shoedex.getLegendaryCount(_activeNPC.name);
       if (count >= 3) {
-        const entry = shoedex.getEntry(_activeNPC.shoesId);
+        const entry = shoedex.getEntry(_activeNPC.feetId);
         if (entry) {
           ui.showDiscovery(entry, _activeNPC);
           Audio.legendaryFanfare();
@@ -7751,7 +7646,7 @@ function _handleDialogueResult(result) {
     }
 
     // Encounters 1 & 2 — relocate so player has to find them again
-    if (_activeNPC && !_activeNPC.shoesCollected) {
+    if (_activeNPC && !_activeNPC.feetCollected) {
       _relocateLegendary(_activeNPC);
     }
     _checkSecretUnlock();
@@ -7892,7 +7787,7 @@ function _exitLandmark() {
 // ── Minigame ──────────────────────────────────────────────────────────────────
 function _openMinigame(npc) {
   document.exitPointerLock(); // free the cursor so buttons are clickable
-  const rpsData = getRPSNpcData(npc.shoesId);
+  const rpsData = getRPSNpcData(npc.feetId);
   startRPSChallenge(
     { name: rpsData.displayName, winLine: rpsData.winLine, lossLine: rpsData.lossLine },
     () => handleMinigameResult(npc, true),
@@ -7923,7 +7818,7 @@ function handleMinigameResult(npc, won) {
   _closeMinigame();
   if (won) {
     Audio.gameWin();
-    const entry = shoedex.getEntry(npc.shoesId);
+    const entry = shoedex.getEntry(npc.feetId);
     if (entry && !shoedex.has(entry.id)) {
       ui.showDiscovery(entry, npc);
       _activeNPC = npc;
